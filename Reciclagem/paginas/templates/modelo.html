@@ -1,0 +1,217 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% block titulo %}
+    <title>Reciclagem</title>
+    {% endblock %}
+
+    <!-- Custom fonts for this template-->
+    <link href={% static 'fontawesome-free/css/all.min.css' %} rel="stylesheet" type="text/css">
+    <link href={%
+        static 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i'
+        %} rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href={% static 'css/sb-admin-2.min.css' %} rel="stylesheet">
+
+</head>
+
+{% block menu%}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown nav-item-right">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                {{ request.user }}
+            </a>
+            <div class="dropdown-menu">
+                {% block menu_drop_login %}
+                <a class="dropdown-item" href="{% url 'login' %}"> Login </a>
+                {% if request.user.is_authenticated %}
+                <a class="dropdown-item" href="{% url 'logout' %}"> Logout </a>
+                {% else %}
+                <a class="dropdown-item" href="#"> VC nao esta logado </a>
+                {% endif %}
+                {% endblock %}
+            </div>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
+
+<body id="page-top">
+    {% block conteudo %}
+    {% if request.user.is_authenticated %}
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+        {% block menulateral %}
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'inicio' %}">
+                <div class="sidebar-brand-icon rotate-n-15">
+                </div>
+                <div class="sidebar-brand-text mx-3"><i class="fas fa-recycle"></i> Reciclagem</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'inicio' %}">
+                    <span><i class="fas fa-columns"></i> Painel</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastro"
+                    aria-expanded="true" aria-controls="collapseCadastro">
+                    <span><i class="fas fa-file-plus"></i> Cadastros</span>
+                </a>
+                <div id="collapseCadastro" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Realizar cadastros:</h6>
+                        <a class="collapse-item" href="{% url 'cadastrar-unidadedemedida'%}">
+                            <i class="far fa-sack"></i> Unidade de Medida</a>
+                        <a class="collapse-item" href="{% url 'cadastrar-papelao'%}">
+                            <i class="fas fa-boxes"></i> Papelão</a>
+                        <a class="collapse-item" href="{% url 'cadastrar-papel'%}">
+                            <i class="fas fa-copy"></i> Papel</a>
+                        <a class="collapse-item" href="{% url 'cadastrar-plastico'%}">
+                            <i class="fal fa-jug"></i> Plastico</a>
+                        <a class="collapse-item" href="{% url 'cadastrar-aluminio'%}">
+                            <i class="fal fa-helmet-battle"></i> Aluminio</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseItens"
+                    aria-expanded="true" aria-controls="collapseItens">
+                    <span>Estoques</span>
+                </a>
+                <div id="collapseItens" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Lista de itens</h6>
+                        <h6 class="collapse-header">cadastrados:</h6>
+                        <a class="collapse-item" href="{% url 'listar-unidadedemedida'%}">Unidade de Medida</a>
+                        <a class="collapse-item" href="{}">PAD Branco</a>
+                        <a class="collapse-item" href="{}">PAD Colorido</a>
+                        <a class="collapse-item" href="{}">Pet Verde</a>
+                        <a class="collapse-item" href="{}">Pet Transparente</a>
+                        <a class="collapse-item" href="{}">PP</a>
+                        <a class="collapse-item" href="{}">PP cristal</a>
+                        <a class="collapse-item" href="{% url 'listar-plastico'%}">Plastico</a>
+                        <a class="collapse-item" href="{}">Plastico Colorido</a>
+                        <a class="collapse-item" href="{}">Treta Pack</a>
+                        <a class="collapse-item" href="{}">Diversos</a>
+                        <a class="collapse-item" href="{}">Borracha</a>
+                        <a class="collapse-item" href="{}">Papelão</a>
+                        <a class="collapse-item" href="{}">Pvc</a>
+                        <a class="collapse-item" href="{}">Papel</a>
+                        <a class="collapse-item" href="{}">Aluminio</a>
+                        <a class="collapse-item" href="{}">Ferro</a>
+                        <a class="collapse-item" href="{}">Cobre</a>
+                        <a class="collapse-item" href="{}">Vidro</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDespesa"
+                    aria-expanded="true" aria-controls="collapseDespesa">
+                    <span>Despesas</span>
+                </a>
+                <div id="collapseDespesa" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Controle de Despesa:</h6>
+                        <a class="collapse-item" href="{% url 'listar-despesa'%}">Despesas</a>
+                        <a class="collapse-item" href="{% url 'cadastrar-despesa'%}">Nova Despesa</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuario"
+                    aria-expanded="true" aria-controls="collapseUsuario">
+                    <span>Usuario</span>
+                </a>
+                <div id="collapseUsuario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Controle de Usuario:</h6>
+                        <a class="collapse-item" href="{% url 'listar-usuario'%}">Usuarios</a>
+                        <a class="collapse-item" href="{% url 'cadastrar-usuario'%}">Novo Usuario</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'sobre' %}">
+                    <span>Sobre</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+
+        {% endblock %}
+
+        <div class="container-fluid">
+            {% block page %}
+
+            <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+
+            {% endblock %}
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src={% static "jquery/jquery.min.js" %}></script>
+    <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src={% static "jquery-easing/jquery.easing.min.js" %}></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src={% static "sb-admin-2.min.js" %}></script>
+
+    {% else %}
+    <a class="dropdown-item" href="#"> VC nao esta logado </a>
+    <a class="dropdown-item" href="{% url 'login' %}"> Login </a>
+    {% endif %}
+    {% endblock %}
+</body>
+
+
+</html>

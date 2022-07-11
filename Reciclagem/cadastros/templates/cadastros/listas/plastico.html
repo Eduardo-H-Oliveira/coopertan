@@ -1,0 +1,43 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block page %}
+            
+<h3> Lista De Plastico</h3>
+
+<a href="{% url 'cadastrar-plastico'  %}" 
+class="btn btn-primary btn-sm" title="Novo"><i class="fas fa-plus"></i></a>
+
+<hr>
+<div class="table-responsive">
+<table class="table table-striped">
+    <tr>
+        <td>Quantidade</td>
+        <td>Unidade De Medida</td>
+        <td>Opções</td>
+
+    </tr>
+
+    {% for plastico in object_list %}
+    <tr>
+        <td>{{ plastico.qunatidade }}</td>
+        <td>{{ plastico.unidadedemedida }}</td>
+        <td>
+            <a href="{% url 'editar-plastico' plastico.pk %}"
+             class="btn btn-warning btn-sm" title="Editar"><i class="fas fa-edit"></i></a>
+            <a href="{% url 'excluir-plastico' plastico.pk %}" 
+            class="btn btn-danger btn-sm" title="Excluir"><i class="fas fa-trash-alt"></i></a>
+
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">Nem um campo registrado</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+</div>
+{% endblock %}

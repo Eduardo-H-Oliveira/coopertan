@@ -1,0 +1,44 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block page %}
+            
+<h3> Lista de Despesas</h3>
+
+<a href="{% url 'cadastrar-despesa'  %}" 
+class="btn btn-primary btn-sm" title="Novo"><i class="fas fa-plus"></i></a>
+
+
+<hr>
+<div class="table-responsive">
+<table class="table table-striped">
+    <tr>
+        <td>Valor</td>
+        <td>Data Criação</td>
+        <td>Opções</td>
+
+    </tr>
+
+    {% for despesa in object_list %}
+    <tr>
+        <td>{{ despesa.valor }}</td>
+        <td>{{ despesa.dt_criacao }}</td>
+        <td>
+            <a href="{% url 'editar-papelao' despesa.pk %}"
+             class="btn btn-warning btn-sm" title="Editar"><i class="fas fa-edit"></i></a>
+            <a href="{% url 'excluir-papelao' despesa.pk %}" 
+            class="btn btn-danger btn-sm" title="Excluir"><i class="fas fa-trash-alt"></i></a>
+
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">Nem um campo registrado</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+</div>
+{% endblock %}
